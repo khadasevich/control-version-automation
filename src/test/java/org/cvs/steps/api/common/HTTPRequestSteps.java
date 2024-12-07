@@ -1,4 +1,4 @@
-package org.cvs.steps.api;
+package org.cvs.steps.api.common;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;

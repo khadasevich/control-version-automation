@@ -1,4 +1,11 @@
 package org.cvs.tests.context;
 
-public class UITestContext extends CommonTestContext {
+import org.testng.annotations.BeforeMethod;
+
+public class UITestContext extends GithubMgmtContext {
+
+    @BeforeMethod
+    public void loginForUITests() {
+        //ToDo: add login via
+    }
 }

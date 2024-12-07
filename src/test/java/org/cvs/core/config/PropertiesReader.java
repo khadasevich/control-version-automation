@@ -1,15 +1,25 @@
 package org.cvs.core.config;
 
+import lombok.extern.log4j.Log4j2;
 import org.cvs.utilities.ResourceUtility;
 
 import java.util.Properties;
 
+@Log4j2
 public class PropertiesReader {
 
     public static Properties properties;
 
-    private static String getPropertyFromConfig(String property) {
-        return initReader().getProperty(property);
+    public static String getEnvOrConfigVariable(String varName) {
+        String value = System.getProperty(varName);
+        if (value == null) {
+            value = getPropertyFromConfig(varName);
+        }
+        return value;
+    }
+
+    private static String getPropertyFromConfig(String propertyName) {
+        return initReader().getProperty(propertyName);
     }
 
     private static Properties initReader() {
@@ -17,8 +27,8 @@ public class PropertiesReader {
             properties = new Properties();
             try {
                 properties.load(ResourceUtility.getResourceStreamViaName("config.properties"));
-            } catch (Exception e) {
-                //ToDo: Add logger
+            } catch (Exception readException) {
+                log.error("Error reading properties file: {}", readException.getMessage());
             }
         }
         return properties;
