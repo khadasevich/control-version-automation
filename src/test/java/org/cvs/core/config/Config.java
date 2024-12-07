@@ -17,6 +17,7 @@ public class Config {
     public static final String DEFAULT_REPOSITORY_NAME = "repository_under_test";
 
     public static RestApiSteps getRestApiSteps() {
+        assert SYSTEM_TYPE != null;
         return switch (SYSTEM_TYPE) {
             case AZURE -> new AzureApiSteps();
             case GITLAB -> new GitlabApiSteps();
