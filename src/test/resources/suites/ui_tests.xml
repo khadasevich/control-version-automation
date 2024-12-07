@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.1.dtd">
+<suite name="UI TESTS">
+    <test name="UI POSITIVE" parallel="methods" thread-count="2">
+        <classes>
+            <class name="org.cvs.tests.UISomeTest"/>
+        </classes>
+    </test>
+</suite>
