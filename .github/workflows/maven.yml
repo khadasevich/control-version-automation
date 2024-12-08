@@ -30,7 +30,7 @@ jobs:
         chrome-version: 131
     - run: chrome --version
     - name: Run Tests
-      run: mvn clean test -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
+      run: mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         USERNAME: ${{ secrets.TEST_USER }}
