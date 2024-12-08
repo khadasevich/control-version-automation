@@ -25,7 +25,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven
+        cache: 'maven'
+        cache-dependency-path: 'sub-project/pom.xml'
 
     - name: Run Tests
       run: mvn clean test -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
