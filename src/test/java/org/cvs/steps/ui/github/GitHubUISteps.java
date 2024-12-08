@@ -36,7 +36,7 @@ public class GitHubUISteps implements UISteps {
         WebDriverRunner.getWebDriver().manage().window().maximize();
         githubLoginPage.getUsernameInput().shouldBe(visible).sendKeys(USERNAME);
         githubLoginPage.getPasswordInput().shouldBe(visible).sendKeys(PASSWORD);
-        githubLoginPage.getSignInButton().shouldBe(enabled).click();
+//        githubLoginPage.getSignInButton().shouldBe(enabled).click();
         githubLoginPage.getHomePageIcon().shouldBe(visible);
         githubLoginPage.getAvatarIcon().shouldBe(visible);
         return WebDriverRunner.getWebDriver().manage().getCookieNamed("user_session");
