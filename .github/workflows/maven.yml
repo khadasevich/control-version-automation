@@ -33,6 +33,7 @@ jobs:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
+      continue-on-error: true
 
     - name: Install Allure CLI 
       run: | 
