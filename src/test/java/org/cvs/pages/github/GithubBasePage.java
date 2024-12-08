@@ -23,11 +23,7 @@ public abstract class GithubBasePage {
     }
 
     public boolean pollPageUntilElementIsVisible(SelenideElement element) {
-        if (element.isDisplayed()) {
-            return true;
-        } else {
-            refresh();
-            return element.isDisplayed();
-        }
+        refresh();
+        return element.isDisplayed();
     }
 }

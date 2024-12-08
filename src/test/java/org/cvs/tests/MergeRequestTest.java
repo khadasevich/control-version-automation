@@ -27,5 +27,6 @@ public class MergeRequestTest extends UIBaseTest {
     @Description("Merge PR and validate")
     void mergePRTest() {
         uiSteps.get().mergePoolRequest(AUTOMATED_PR_TITLE);
+        uiSteps.get().validateMerge(AUTOMATED_PR_TITLE);
     }
 }

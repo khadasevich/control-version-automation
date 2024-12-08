@@ -141,6 +141,7 @@ public class GitHubUISteps implements UISteps {
     @Override
     public void validateMerge(String prName) {
         openPullRequestsPage();
-        githubPullRequestsPage.getElementByText(prName).shouldNotBe(visible);
+        SelenideElement mergedPR = githubPullRequestsPage.getElementByText(prName);
+        PollerUtility.waiter(() -> githubBranchDetailsPage.pollPageUntilElementIsVisible(mergedPR), equalTo(false));
     }
 }
