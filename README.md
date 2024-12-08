@@ -8,9 +8,9 @@ ToDo:
 6. Add commit to two in parallel - Done
 7. Add pr with one - Done
 8. Login test 0 - Done
-9. Logging
-10. Listeners
-11. Report
+9. Logging - Done
+10. Listeners - Done
+11. Report - Done
 12. Test 1. Create branch
 13. Test 2. Add commit to branch without commit
 14. Test 3. Create PR

@@ -1,6 +1,7 @@
 package org.cvs.tests.context;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.cvs.core.config.Config;
 import org.cvs.entities.branch.GithubBranch;
 import org.cvs.entities.commit.GithubCommit;
@@ -16,6 +17,7 @@ import java.util.stream.IntStream;
 
 import static org.cvs.core.config.Config.*;
 
+@Log4j2
 public class VcsMgmtPreconditions extends BaseTest {
 
     protected Repository repository;
@@ -44,6 +46,7 @@ public class VcsMgmtPreconditions extends BaseTest {
             repository = apiSteps.createRepo(requestBody);
             ((GithubApiSteps) apiSteps).addContentToRepo();
             repositoryName = ((GithubRepository) repository).getName();
+            log.info("Repository Created: {}", repositoryName);
         }
     }
 
@@ -52,12 +55,14 @@ public class VcsMgmtPreconditions extends BaseTest {
         if (apiSteps instanceof GithubApiSteps) {
             repoSHA = ((GithubApiSteps) apiSteps).getRepoSHA();
             IntStream.range(0, BRANCHES.size()).forEach(i -> {
+                String branchName = BRANCHES.get(i);
                 GithubBranch branch = GithubBranch.builder()
                         .repoName(repositoryName)
-                        .branchName(BRANCHES.get(i))
+                        .branchName(branchName)
                         .sha(repoSHA)
                         .build();
                 apiSteps.createBranch(branch);
+                log.info("Branch Created: {}", branchName);
             });
         }
     }
@@ -73,6 +78,7 @@ public class VcsMgmtPreconditions extends BaseTest {
                 GithubCommit commit = GithubCommit.builder().tree(treeSHA).parents(parents).build();
                 String commitSHA = apiSteps.addCommit(commit);
                 ((GithubApiSteps) apiSteps).updateBranchReference(commitSHA, branchName);
+                log.info("Commit {} added to branch {}", commitSHA, branchName);
             });
         }
     }
@@ -85,6 +91,7 @@ public class VcsMgmtPreconditions extends BaseTest {
                     .head(BRANCH_WITH_MR_NAME)
                     .build();
             apiSteps.createMergeRequest(mergeRequest);
+            log.info("Merge Request created for branch {}", BRANCH_WITH_MR_NAME);
         }
     }
 }

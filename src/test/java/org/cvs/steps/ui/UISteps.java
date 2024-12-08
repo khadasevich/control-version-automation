@@ -6,7 +6,11 @@ public interface UISteps {
 
     Cookie logIn();
 
-    void createBranch();
+    void openRepositoryDetails();
+
+    void createBranch(String branchName);
+
+    void validateBranchCreation(String branchName);
 
     void addCommit();
 

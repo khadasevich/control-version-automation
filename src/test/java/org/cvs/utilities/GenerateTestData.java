@@ -13,4 +13,8 @@ public class GenerateTestData {
     public static String gitHubFilePath() {
         return FAKER.numerify("file###.rb");
     }
+
+    public static String branchName() {
+        return FAKER.numerify("branch_##");
+    }
 }
