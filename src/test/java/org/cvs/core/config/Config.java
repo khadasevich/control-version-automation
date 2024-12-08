@@ -2,9 +2,9 @@ package org.cvs.core.config;
 
 import org.cvs.entities.VCS;
 import org.cvs.steps.api.RestApiSteps;
-import org.cvs.steps.api.azure.AzureApiSteps;
 import org.cvs.steps.api.github.GithubApiSteps;
-import org.cvs.steps.api.gitlab.GitlabApiSteps;
+import org.cvs.steps.ui.UISteps;
+import org.cvs.steps.ui.github.GitHubUISteps;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class Config {
     public static final VCS SYSTEM_TYPE = VCS.getVcsByName(PropertiesReader.getEnvOrConfigVariable("vcs.type"));
     public static final String USERNAME = PropertiesReader.getEnvOrConfigVariable("vcs.username");
     public static final String PASSWORD = PropertiesReader.getEnvOrConfigVariable("vcs.password");
-    public static final String HOST = PropertiesReader.getEnvOrConfigVariable("vcs.host");
+    public static final String WEB_HOST = PropertiesReader.getEnvOrConfigVariable("vcs.host");
     public static final String API_HOST = PropertiesReader.getEnvOrConfigVariable("vcs.api.host");
     public static final String TOKEN = PropertiesReader.getEnvOrConfigVariable("vcs.token");
     public static final String VCS_MAIN_BRANCH = PropertiesReader.getEnvOrConfigVariable("vcs.main.branch");
@@ -27,9 +27,18 @@ public class Config {
     public static RestApiSteps getRestApiSteps() {
         assert SYSTEM_TYPE != null;
         return switch (SYSTEM_TYPE) {
-            case AZURE -> new AzureApiSteps();
-            case GITLAB -> new GitlabApiSteps();
+            case AZURE -> null; //ToDo implement
+            case GITLAB -> null; //ToDo implement
             default -> new GithubApiSteps();
+        };
+    }
+
+    public static UISteps getUISteps() {
+        assert SYSTEM_TYPE != null;
+        return switch (SYSTEM_TYPE) {
+            case AZURE -> null; //ToDo implement
+            case GITLAB -> null; //ToDo implement
+            default -> new GitHubUISteps();
         };
     }
 }

@@ -7,7 +7,7 @@ ToDo:
 5. create 3 branches in parallel - Done
 6. Add commit to two in parallel - Done
 7. Add pr with one - Done
-8. Login test 0
+8. Login test 0 - Done
 9. Logging
 10. Listeners
 11. Report

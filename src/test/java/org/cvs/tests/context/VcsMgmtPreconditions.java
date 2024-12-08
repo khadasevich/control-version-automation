@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 
 import static org.cvs.core.config.Config.*;
 
-public class VcsMgmtContext extends CommonTestContext {
+public class VcsMgmtPreconditions extends BaseTest {
 
     protected Repository repository;
     protected String repositoryName;
@@ -36,7 +36,7 @@ public class VcsMgmtContext extends CommonTestContext {
         if (apiSteps instanceof GithubApiSteps) {
             List<GithubRepository> repositoryList = apiSteps.getListOfRepositories();
             repositoryList = repositoryList
-                    .stream().filter(repo -> repo.getName().equals(DEFAULT_REPOSITORY_NAME)).toList();
+                    .stream().filter(repo -> repo.getName().contains(DEFAULT_REPOSITORY_NAME)).toList();
             if (!repositoryList.isEmpty()) {
                 apiSteps.deleteRepo();
             }
