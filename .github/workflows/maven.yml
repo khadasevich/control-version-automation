@@ -31,8 +31,8 @@ jobs:
       run: mvn clean test -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
-        USERNAME: ${{ secrets.USERNAME }}
-        USERPASS: ${{ secrets.USERPASS }}
+        USERNAME: ${{ secrets.TEST_USER }}
+        USERPASS: ${{ secrets.TEST_PWD }}
 
     - name: Build test report
       uses: simple-elf/allure-report-action@v1.7
@@ -42,7 +42,7 @@ jobs:
         allure_results: target/allure-results
 
     - name: Publish test report
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4.0.0
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
