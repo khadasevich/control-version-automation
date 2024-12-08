@@ -41,7 +41,7 @@ jobs:
         mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=mend-auto -Dvcs.userpwd=u6iyuu4itimzm7h
 
     - name: Check directories
-      run: ls -ls
+      run: echo "ls -ls" >> $GITHUB_OUTPUT
 
     - name: Get Allure history.
       uses: actions/checkout@v2
