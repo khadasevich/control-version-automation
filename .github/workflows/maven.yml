@@ -39,7 +39,9 @@ jobs:
         echo $USERNAME
         echo $USERPASS
         mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=mend-auto -Dvcs.userpwd=u6iyuu4itimzm7h
-        ls -ls
+
+    - name: Check directories
+      run: ls -ls
 
     - name: Get Allure history.
       uses: actions/checkout@v2
