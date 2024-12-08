@@ -20,9 +20,10 @@ public class Config {
     public static final String DEFAULT_REPOSITORY_NAME = "repository_under_test";
     public static final String BRANCH_NAME = "branch";
     public static final String BRANCH_WITH_COMMIT_NAME = "branch_with_commit";
-    public static final String BRANCH_WITH_MR_NAME = "branch_with_mr";
-    public static final List<String> BRANCHES = List.of(BRANCH_NAME, BRANCH_WITH_COMMIT_NAME, BRANCH_WITH_MR_NAME);
-    public static final List<String> BRANCHES_WITH_COMMITS = List.of(BRANCH_WITH_COMMIT_NAME, BRANCH_WITH_MR_NAME);
+    public static final String BRANCH_WITH_PR_NAME = "branch_with_pr";
+    public static final String AUTOMATED_PR_TITLE = "automated_pr_title";
+    public static final List<String> BRANCHES = List.of(BRANCH_NAME, BRANCH_WITH_COMMIT_NAME, BRANCH_WITH_PR_NAME);
+    public static final List<String> BRANCHES_WITH_COMMITS = List.of(BRANCH_WITH_COMMIT_NAME, BRANCH_WITH_PR_NAME);
 
     public static RestApiSteps getRestApiSteps() {
         assert SYSTEM_TYPE != null;

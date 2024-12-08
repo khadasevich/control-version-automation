@@ -16,7 +16,6 @@ import static org.cvs.utilities.AllureReportUtility.UI_ALLURE_EPIC;
 public class MergeRequestTest extends UIBaseTest {
 
     @Test
-    @TmsLink("//ToDo")
     @Description("Create merge request to master and validate")
     void createMergeRequestTest() {
         String prName = GenerateTestData.gitPRName();
@@ -25,9 +24,8 @@ public class MergeRequestTest extends UIBaseTest {
     }
 
     @Test
-    @TmsLink("//ToDo")
-    @Description("Merge MR and validate")
-    void mergeMRTest() {
-        uiSteps.get().mergePoolRequest(BRANCH_WITH_MR_NAME);
+    @Description("Merge PR and validate")
+    void mergePRTest() {
+        uiSteps.get().mergePoolRequest(AUTOMATED_PR_TITLE);
     }
 }

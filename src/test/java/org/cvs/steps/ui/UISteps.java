@@ -20,7 +20,7 @@ public interface UISteps {
 
     void validatePoolRequestCreation(String prName);
 
-    void mergePoolRequest(String branchName);
+    void mergePoolRequest(String prName);
 
-    void validateMerge(String branchName);
+    void validateMerge(String prName);
 }

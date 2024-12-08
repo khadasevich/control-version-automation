@@ -88,10 +88,10 @@ public class VcsMgmtPreconditions extends BaseTest {
         if (apiSteps instanceof GithubApiSteps) {
             GithubPoolRequest mergeRequest = GithubPoolRequest.builder()
                     .base(VCS_MAIN_BRANCH)
-                    .head(BRANCH_WITH_MR_NAME)
+                    .head(BRANCH_WITH_PR_NAME)
                     .build();
             apiSteps.createPullRequest(mergeRequest);
-            log.info("Merge Request created for branch {}", BRANCH_WITH_MR_NAME);
+            log.info("Merge Request created for branch {}", BRANCH_WITH_PR_NAME);
         }
     }
 }

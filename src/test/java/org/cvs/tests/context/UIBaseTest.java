@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.cvs.steps.ui.UISteps;
 import org.cvs.utilities.AllureReportUtility;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.Cookie;

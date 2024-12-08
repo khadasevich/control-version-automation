@@ -127,15 +127,20 @@ public class GitHubUISteps implements UISteps {
 
     @Step
     @Override
-    public void mergePoolRequest(String branchName) {
-        openBranchDetails(branchName);
-
+    public void mergePoolRequest(String prName) {
+        openPullRequestsPage();
+        githubPullRequestsPage.getElementByText(prName).shouldBe(enabled).click();
+        githubPullRequestsPage.getProgressBar().shouldBe(hidden, EXPLICIT_TIMEOUT);
+        githubPullRequestsPage.getMergePullRequestButton().shouldBe(enabled).click();
+        githubPullRequestsPage.getConfirmMRButton().shouldBe(enabled).click();
+        githubPullRequestsPage.getElementByText("Status: Merged");
+        log.info("Branch {} merged", BRANCH_WITH_PR_NAME);
     }
 
     @Step
     @Override
-    public void validateMerge(String branchName) {
-        openBranchDetails(branchName);
-
+    public void validateMerge(String prName) {
+        openPullRequestsPage();
+        githubPullRequestsPage.getElementByText(prName).shouldNotBe(visible);
     }
 }

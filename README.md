@@ -14,7 +14,6 @@ ToDo:
 12. Test 1. Create branch - Done
 13. Test 2. Add commit to branch without commit - Done
 14. Test 3. Create PR - Done
-15. Test 4. Merge PR
+15. Test 4. Merge PR - Done
 16. Github actions CI
 17. Readme
-18. Manual Test Cases
