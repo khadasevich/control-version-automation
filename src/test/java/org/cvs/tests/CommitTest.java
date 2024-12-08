@@ -15,7 +15,7 @@ import static org.cvs.utilities.AllureReportUtility.UI_ALLURE_EPIC;
 @Feature("COMMIT FEATURES")
 public class CommitTest extends UIBaseTest {
 
-    private static final String COMMIT_FILE = GenerateTestData.gitCommit();
+    private static final String COMMIT_FILE = GenerateTestData.gitCommitFileName();
 
     @Test
     @TmsLink("//ToDo")

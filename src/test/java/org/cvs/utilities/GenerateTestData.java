@@ -18,7 +18,11 @@ public class GenerateTestData {
         return FAKER.numerify("branch_##");
     }
 
-    public static String gitCommit() {
+    public static String gitCommitFileName() {
         return FAKER.numerify("commit###");
+    }
+
+    public static String gitPRName() {
+        return FAKER.numerify("pr###");
     }
 }

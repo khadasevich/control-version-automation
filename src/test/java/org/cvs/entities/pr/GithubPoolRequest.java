@@ -1,4 +1,4 @@
-package org.cvs.entities.mr;
+package org.cvs.entities.pr;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
@@ -9,11 +9,11 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubMergeRequest extends MergeRequest {
+public class GithubPoolRequest extends PoolRequest {
 
     private String head;
     @Builder.Default
-    private String title = "Automated Merge Request";
+    private String title = "Automated Pool Request";
     @Builder.Default
     private String body = "This is a automated merge request";
     private String base;

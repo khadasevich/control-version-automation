@@ -3,7 +3,7 @@ package org.cvs.steps.api;
 import io.restassured.builder.RequestSpecBuilder;
 import org.cvs.entities.branch.Branch;
 import org.cvs.entities.commit.Commit;
-import org.cvs.entities.mr.MergeRequest;
+import org.cvs.entities.pr.PoolRequest;
 import org.cvs.entities.repositories.Repository;
 
 import java.util.List;
@@ -24,5 +24,5 @@ public interface RestApiSteps {
 
     String addCommit(Commit commit);
 
-    void createMergeRequest(MergeRequest mergeRequest);
+    void createPullRequest(PoolRequest poolRequest);
 }

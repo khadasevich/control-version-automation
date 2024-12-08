@@ -16,7 +16,11 @@ public interface UISteps {
 
     void validateCommitCreation(String branchName, String fileName);
 
-    void createMergeRequest();
+    void createPoolRequest(String branchName, String prName);
 
-    void mergeMergeRequest();
+    void validatePoolRequestCreation(String prName);
+
+    void mergePoolRequest(String branchName);
+
+    void validateMerge(String branchName);
 }

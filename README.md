@@ -13,7 +13,7 @@ ToDo:
 11. Report - Done
 12. Test 1. Create branch - Done
 13. Test 2. Add commit to branch without commit - Done
-14. Test 3. Create PR
+14. Test 3. Create PR - Done
 15. Test 4. Merge PR
 16. Github actions CI
 17. Readme

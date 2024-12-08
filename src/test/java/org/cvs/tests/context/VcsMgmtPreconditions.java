@@ -5,7 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.cvs.core.config.Config;
 import org.cvs.entities.branch.GithubBranch;
 import org.cvs.entities.commit.GithubCommit;
-import org.cvs.entities.mr.GithubMergeRequest;
+import org.cvs.entities.pr.GithubPoolRequest;
 import org.cvs.entities.repositories.Repository;
 import org.cvs.entities.repositories.github.GithubRepository;
 import org.cvs.steps.api.RestApiSteps;
@@ -86,11 +86,11 @@ public class VcsMgmtPreconditions extends BaseTest {
     @Step
     private void createMergeRequest(RestApiSteps apiSteps) {
         if (apiSteps instanceof GithubApiSteps) {
-            GithubMergeRequest mergeRequest = GithubMergeRequest.builder()
+            GithubPoolRequest mergeRequest = GithubPoolRequest.builder()
                     .base(VCS_MAIN_BRANCH)
                     .head(BRANCH_WITH_MR_NAME)
                     .build();
-            apiSteps.createMergeRequest(mergeRequest);
+            apiSteps.createPullRequest(mergeRequest);
             log.info("Merge Request created for branch {}", BRANCH_WITH_MR_NAME);
         }
     }

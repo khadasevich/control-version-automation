@@ -7,7 +7,7 @@ import org.cvs.entities.branch.Branch;
 import org.cvs.entities.branch.GitHubRef;
 import org.cvs.entities.branch.GithubBranch;
 import org.cvs.entities.commit.*;
-import org.cvs.entities.mr.MergeRequest;
+import org.cvs.entities.pr.PoolRequest;
 import org.cvs.entities.repositories.Repository;
 import org.cvs.entities.repositories.github.GitHubRepoContent;
 import org.cvs.entities.repositories.github.GithubRepository;
@@ -128,10 +128,10 @@ public class GithubApiSteps implements RestApiSteps {
     }
 
     @Override
-    public void createMergeRequest(MergeRequest mergeRequest) {
+    public void createPullRequest(PoolRequest poolRequest) {
         String basePath = String.format("/repos/%s/%s/pulls", USERNAME, DEFAULT_REPOSITORY_NAME);
         RequestSpecification requestSpecification = getBaseRequestSpecification()
-                .setBasePath(basePath).setBody(mergeRequest).build();
+                .setBasePath(basePath).setBody(poolRequest).build();
         HTTPRequestSteps.post(requestSpecification).statusCode(201);
     }
 }
