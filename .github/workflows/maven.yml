@@ -25,9 +25,6 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-  run-tests:
-    runs-on: ubuntu-latest
-    steps:
     - uses: browser-actions/setup-chrome@v1
     - run: chrome --version
     - name: Run Tests
@@ -37,10 +34,6 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         USERPASS: ${{ secrets.USERPASS }}
 
-  report:
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Build test report
       uses: simple-elf/allure-report-action@v1.7
       if: always()
