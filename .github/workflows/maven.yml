@@ -31,14 +31,14 @@ jobs:
     - run: chrome --version
     - name: Run Tests
       env:
-        API_TOKEN: ${{ secrets.API_TOKEN }}
-        USERNAME: ${{ secrets.TEST_USER }}
-        USERPASS: ${{ secrets.TEST_PWD }}
+        API_TOKEN: ${{secrets.API_TOKEN}}
+        USERNAME: ${{secrets.TEST_USER}}
+        USERPASS: ${{secrets.TEST_PWD}}
       run: |
         echo $API_TOKEN
         echo $USERNAME
         echo $USERPASS
-        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
+        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=mend-auto -Dvcs.userpwd=u6iyuu4itimzm7h
 
     - name: Get Allure history.
       uses: actions/checkout@v2
