@@ -28,11 +28,11 @@ jobs:
         cache: maven
 
     - name: Run Tests
-      run: mvn clean test -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.password=$PASSWORD
+      run: mvn clean test -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
+        USERPASS: ${{ secrets.USERPASS }}
 
     - name: Load test report history
       uses: actions/checkout@v3

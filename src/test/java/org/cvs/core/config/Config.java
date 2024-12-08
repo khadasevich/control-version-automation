@@ -12,7 +12,7 @@ public class Config {
 
     public static final VCS SYSTEM_TYPE = VCS.getVcsByName(PropertiesReader.getEnvOrConfigVariable("vcs.type"));
     public static final String USERNAME = PropertiesReader.getEnvOrConfigVariable("vcs.username");
-    public static final String PASSWORD = PropertiesReader.getEnvOrConfigVariable("vcs.password");
+    public static final String PASSWORD = PropertiesReader.getEnvOrConfigVariable("vcs.userpwd");
     public static final String WEB_HOST = PropertiesReader.getEnvOrConfigVariable("vcs.host");
     public static final String API_HOST = PropertiesReader.getEnvOrConfigVariable("vcs.api.host");
     public static final String TOKEN = PropertiesReader.getEnvOrConfigVariable("vcs.token");
