@@ -30,23 +30,35 @@ jobs:
         chrome-version: 131
     - run: chrome --version
     - name: Run Tests
-      run: mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
         USERNAME: ${{ secrets.TEST_USER }}
         USERPASS: ${{ secrets.TEST_PWD }}
+      run: |
+        echo $API_TOKEN
+        echo $USERNAME
+        echo $USERPASS
+        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
 
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
+    - name: Get Allure history.
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Allure Report action from marketplace.
+      uses: simple-elf/allure-report-action@master
       if: always()
       with:
-        gh_pages: gh-pages
-        allure_results: target/allure-results
+        allure_results: allure-results
+        allure_history: allure-history
 
-    - name: Publish test report
-      uses: peaceiris/actions-gh-pages@v4.0.0
+    - name: Deploy report to Github Pages.
       if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-history
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
