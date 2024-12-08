@@ -1,9 +1,9 @@
 package org.cvs.steps.api;
 
 import io.restassured.builder.RequestSpecBuilder;
-import org.cvs.entities.branch.AbstractBranch;
-import org.cvs.entities.commit.AbstractCommit;
-import org.cvs.entities.mr.AbstractMergeRequest;
+import org.cvs.entities.branch.Branch;
+import org.cvs.entities.commit.Commit;
+import org.cvs.entities.mr.MergeRequest;
 import org.cvs.entities.repositories.Repository;
 
 import java.util.List;
@@ -18,17 +18,11 @@ public interface RestApiSteps {
 
     Repository createRepo(Repository repository);
 
-    List<AbstractMergeRequest> getListOfMergeRequests();
+    void deleteRepo();
 
-    void closeMergeRequest(AbstractMergeRequest mergeRequest);
+    void createBranch(Branch branch);
 
-    List<AbstractBranch> getListOfBranches();
+    String addCommit(Commit commit);
 
-    void deleteBranch(AbstractBranch branch);
-
-    void createBranch(AbstractBranch branch);
-
-    void addCommit(AbstractCommit commit);
-
-    void createMergeRequest(AbstractMergeRequest mergeRequest);
+    void createMergeRequest(MergeRequest mergeRequest);
 }

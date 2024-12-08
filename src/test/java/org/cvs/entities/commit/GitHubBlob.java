@@ -5,16 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.List;
-
 @Data
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubCommit extends Commit {
+public class GitHubBlob {
 
     @Builder.Default
-    private String message = "Commit message";
-    private String tree;
-    private List<String> parents;
+    private String content = "Content of the blob";
+    @Builder.Default
+    private String encoding = "utf-8";
 }

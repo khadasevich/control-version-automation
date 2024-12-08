@@ -9,9 +9,8 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubBranch extends Branch {
+public class GitHubRef {
 
-    private String repoName;
-    private String branchName;
+    private String ref;
     private String sha;
 }

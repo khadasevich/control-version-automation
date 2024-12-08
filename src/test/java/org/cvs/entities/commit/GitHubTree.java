@@ -1,6 +1,7 @@
 package org.cvs.entities.commit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -11,10 +12,9 @@ import java.util.List;
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubCommit extends Commit {
+public class GitHubTree {
 
-    @Builder.Default
-    private String message = "Commit message";
-    private String tree;
-    private List<String> parents;
+    @JsonProperty("base_tree")
+    private String baseTree;
+    private List<TreeItem> tree;
 }

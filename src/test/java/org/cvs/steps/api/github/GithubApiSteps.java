@@ -3,13 +3,17 @@ package org.cvs.steps.api.github;
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import org.cvs.entities.branch.AbstractBranch;
-import org.cvs.entities.commit.AbstractCommit;
-import org.cvs.entities.mr.AbstractMergeRequest;
+import org.cvs.entities.branch.Branch;
+import org.cvs.entities.branch.GitHubRef;
+import org.cvs.entities.branch.GithubBranch;
+import org.cvs.entities.commit.*;
+import org.cvs.entities.mr.MergeRequest;
 import org.cvs.entities.repositories.Repository;
+import org.cvs.entities.repositories.github.GitHubRepoContent;
 import org.cvs.entities.repositories.github.GithubRepository;
 import org.cvs.steps.api.RestApiSteps;
 import org.cvs.steps.api.common.HTTPRequestSteps;
+import org.cvs.utilities.GenerateTestData;
 
 import java.util.List;
 
@@ -36,7 +40,8 @@ public class GithubApiSteps implements RestApiSteps {
     @Override
     public List<GithubRepository> getListOfRepositories() {
         RequestSpecification requestSpecification = getBaseRequestSpecification().setBasePath("/user/repos").build();
-        return HTTPRequestSteps.get(requestSpecification).extract().jsonPath().getList("", GithubRepository.class);
+        return HTTPRequestSteps.get(requestSpecification)
+                .statusCode(200).extract().jsonPath().getList("", GithubRepository.class);
     }
 
     @Step
@@ -44,41 +49,89 @@ public class GithubApiSteps implements RestApiSteps {
     public GithubRepository createRepo(Repository repository) {
         RequestSpecification requestSpecification = getBaseRequestSpecification()
                 .setBasePath("/user/repos").setBody(repository).build();
-        return HTTPRequestSteps.post(requestSpecification).extract().jsonPath().getObject("", GithubRepository.class);
+        return HTTPRequestSteps.post(requestSpecification)
+                .statusCode(201).extract().jsonPath().getObject("", GithubRepository.class);
     }
 
     @Override
-    public List<AbstractMergeRequest> getListOfMergeRequests() {
-        return List.of();
+    public void deleteRepo() {
+        String basePath = String.format("/repos/%s/%s", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).build();
+        HTTPRequestSteps.delete(requestSpecification).statusCode(204);
+    }
+
+    @Step
+    public void addContentToRepo() {
+        String basePath = String.format("/repos/%s/%s/contents/%s", USERNAME, DEFAULT_REPOSITORY_NAME, GenerateTestData.gitHubPath());
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(GitHubRepoContent.builder().build()).build();
+        HTTPRequestSteps.put(requestSpecification).statusCode(201);
+    }
+
+    @Step
+    public String getRepoSHA() {
+        String basePath = String.format("/repos/%s/%s/git/refs/heads", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).build();
+        return HTTPRequestSteps.get(requestSpecification).statusCode(200)
+                .extract().jsonPath().getString("object.sha").replaceAll("[^a-zA-Z0-9]", "");
+    }
+
+    @Step
+    @Override
+    public void createBranch(Branch branch) {
+        String repoName = ((GithubBranch) branch).getRepoName();
+        String basePath = "/repos/" + USERNAME + "/" + repoName + "/git/refs";
+        String refName = "refs/heads/" + ((GithubBranch) branch).getBranchName();
+        String branchSha = ((GithubBranch) branch).getSha();
+        GitHubRef body = GitHubRef.builder().ref(refName).sha(branchSha).build();
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(body).build();
+        HTTPRequestSteps.post(requestSpecification).statusCode(201);
+    }
+
+    @Step
+    public String createBlob() {
+        String basePath = String.format("/repos/%s/%s/git/blobs", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(GitHubBlob.builder().build()).build();
+        return HTTPRequestSteps.post(requestSpecification).statusCode(201).extract().jsonPath().get("sha");
+    }
+
+    @Step
+    public String createTree(String blobSHA, String branchSHA) {
+        String basePath = String.format("/repos/%s/%s/git/trees", USERNAME, DEFAULT_REPOSITORY_NAME);
+        TreeItem treeItem = TreeItem.builder().sha(blobSHA).build();
+        GitHubTree gitHubTree = GitHubTree.builder().baseTree(branchSHA).tree(List.of(treeItem)).build();
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(gitHubTree).build();
+        return HTTPRequestSteps.post(requestSpecification).statusCode(201).extract().jsonPath().get("sha");
+    }
+
+    @Step
+    @Override
+    public String addCommit(Commit commit) {
+        String basePath = String.format("/repos/%s/%s/git/commits", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(commit).build();
+        return HTTPRequestSteps.post(requestSpecification).statusCode(201).extract().jsonPath().get("sha");
+    }
+
+    @Step
+    public void updateBranchReference(String commitSHA, String branchName) {
+        String basePath = String.format("/repos/%s/%s/git/refs/heads/%s", USERNAME, DEFAULT_REPOSITORY_NAME, branchName);
+        LinkCommitToBranch body = LinkCommitToBranch.builder().sha(commitSHA).build();
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(body).build();
+        HTTPRequestSteps.patch(requestSpecification).statusCode(200);
     }
 
     @Override
-    public void closeMergeRequest(AbstractMergeRequest mergeRequest) {
-
-    }
-
-    @Override
-    public List<AbstractBranch> getListOfBranches() {
-        return List.of();
-    }
-
-    @Override
-    public void deleteBranch(AbstractBranch branch) {
-
-    }
-
-    @Override
-    public void createBranch(AbstractBranch branch) {
-
-    }
-
-    @Override
-    public void addCommit(AbstractCommit commit) {
-
-    }
-
-    @Override
-    public void createMergeRequest(AbstractMergeRequest mergeRequest) {
-
+    public void createMergeRequest(MergeRequest mergeRequest) {
+        String basePath = String.format("/repos/%s/%s/pulls", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).setBody(mergeRequest).build();
+        HTTPRequestSteps.post(requestSpecification).statusCode(201);
     }
 }

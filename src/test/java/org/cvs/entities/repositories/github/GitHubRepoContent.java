@@ -1,20 +1,18 @@
-package org.cvs.entities.commit;
+package org.cvs.entities.repositories.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.List;
-
 @Data
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubCommit extends Commit {
+public class GitHubRepoContent {
 
     @Builder.Default
-    private String message = "Commit message";
-    private String tree;
-    private List<String> parents;
+    private String message = "Content message";
+    @Builder.Default
+    private String content = "dGhpcyB0YXNrIGlzIHRvbyBiaWc=";
 }

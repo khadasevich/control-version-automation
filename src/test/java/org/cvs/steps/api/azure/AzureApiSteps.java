@@ -1,9 +1,9 @@
 package org.cvs.steps.api.azure;
 
 import io.restassured.builder.RequestSpecBuilder;
-import org.cvs.entities.branch.AbstractBranch;
-import org.cvs.entities.commit.AbstractCommit;
-import org.cvs.entities.mr.AbstractMergeRequest;
+import org.cvs.entities.branch.Branch;
+import org.cvs.entities.commit.Commit;
+import org.cvs.entities.mr.MergeRequest;
 import org.cvs.entities.repositories.Repository;
 import org.cvs.entities.repositories.azure.AzureRepository;
 import org.cvs.steps.api.RestApiSteps;
@@ -27,37 +27,23 @@ public class AzureApiSteps implements RestApiSteps {
     }
 
     @Override
-    public List<AbstractMergeRequest> getListOfMergeRequests() {
-        return List.of();
-    }
-
-    @Override
-    public void closeMergeRequest(AbstractMergeRequest mergeRequest) {
+    public void deleteRepo() {
 
     }
 
     @Override
-    public List<AbstractBranch> getListOfBranches() {
-        return List.of();
-    }
-
-    @Override
-    public void deleteBranch(AbstractBranch branch) {
+    public void createBranch(Branch branch) {
 
     }
 
     @Override
-    public void createBranch(AbstractBranch branch) {
+    public String addCommit(Commit commit) {
 
+        return null;
     }
 
     @Override
-    public void addCommit(AbstractCommit commit) {
-
-    }
-
-    @Override
-    public void createMergeRequest(AbstractMergeRequest mergeRequest) {
+    public void createMergeRequest(MergeRequest mergeRequest) {
 
     }
 }

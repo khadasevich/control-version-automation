@@ -5,16 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.List;
-
 @Data
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubCommit extends Commit {
+public class LinkCommitToBranch {
 
     @Builder.Default
-    private String message = "Commit message";
-    private String tree;
-    private List<String> parents;
+    private boolean force = true;
+    private String sha;
 }

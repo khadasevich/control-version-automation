@@ -9,7 +9,7 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
 public class HTTPRequestSteps {
-    
+
     public static ValidatableResponse get(RequestSpecification reqSpec) {
         return executeHttpRequest(reqSpec, Method.GET);
     }
@@ -20,6 +20,10 @@ public class HTTPRequestSteps {
 
     public static ValidatableResponse put(RequestSpecification reqSpec) {
         return executeHttpRequest(reqSpec, Method.PUT);
+    }
+
+    public static ValidatableResponse patch(RequestSpecification reqSpec) {
+        return executeHttpRequest(reqSpec, Method.PATCH);
     }
 
     public static ValidatableResponse delete(RequestSpecification reqSpec) {

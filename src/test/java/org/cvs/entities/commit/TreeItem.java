@@ -4,17 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
-
-import java.util.List;
+import org.cvs.utilities.GenerateTestData;
 
 @Data
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubCommit extends Commit {
+public class TreeItem {
 
     @Builder.Default
-    private String message = "Commit message";
-    private String tree;
-    private List<String> parents;
+    private String mode = "100644";
+    @Builder.Default
+    private String path = GenerateTestData.gitHubFilePath();
+    @Builder.Default
+    private String type = "blob";
+    private String sha;
 }

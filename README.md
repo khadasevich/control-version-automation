@@ -2,11 +2,11 @@ ToDo:
 1. Get data from config - Done
 2. Authentication - Done
 3. Create repo if doesn't exits - Done
-4. Clean branches
-5. Clean MR
-5. create 3 branches in parallel
-6. Add commit to two in parallel
-7. Add pr with one
+4. Clean branches - Done
+5. Clean MR - Done
+5. create 3 branches in parallel - Done
+6. Add commit to two in parallel - Done
+7. Add pr with one - Done
 8. Login test 0
 9. Logging
 10. Listeners
