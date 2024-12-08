@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Validate successfull login","31435","testLogin","VCS TESTS","Sun Dec 08 19:45:24 GMT 2024","failed","Sun Dec 08 19:45:56 GMT 2024","org.cvs.tests.LoginTest","UI POSITIVE","org.cvs.tests.LoginTest","testLogin"
