@@ -14,6 +14,7 @@ import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.cvs.core.config.Config.*;
 import static org.cvs.pages.github.GithubBranchesPage.BRANCHES_PAGE_PATH;
 import static org.cvs.pages.github.GithubLoginPage.LOGIN_PAGE_PATH;
@@ -36,6 +37,8 @@ public class GitHubUISteps implements UISteps {
         WebDriverRunner.getWebDriver().manage().window().maximize();
         githubLoginPage.getUsernameInput().shouldBe(visible).sendKeys(USERNAME);
         githubLoginPage.getPasswordInput().shouldBe(visible).sendKeys(PASSWORD);
+        sleep(500);
+        githubLoginPage.getPasswordInput().submit();
 //        githubLoginPage.getSignInButton().shouldBe(enabled).click();
         githubLoginPage.getHomePageIcon().shouldBe(visible);
         githubLoginPage.getAvatarIcon().shouldBe(visible);
