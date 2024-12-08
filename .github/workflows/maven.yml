@@ -38,10 +38,20 @@ jobs:
         echo $API_TOKEN
         echo $USERNAME
         echo $USERPASS
-        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=mend-auto -Dvcs.userpwd=u6iyuu4itimzm7h
+        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
 
-    - name: Check directories
-      run: echo "ls -ls" >> $GITHUB_OUTPUT
+    - name: List directories in the root folder
+      run: | 
+        echo "Directories in the root folder:" find . -type d -maxdepth 1 
+
+    - name: Save list of directories as output
+      id: directories
+      run: | 
+        dirs=$(find . -type d -maxdepth 1) echo "Directories:" echo "$dirs" echo "::set-output name=dirs::$dirs" 
+
+    - name: Use output in another step
+      run: | 
+        echo "Directories from previous step: ${{ steps.directories.outputs.dirs }}"
 
     - name: Get Allure history.
       uses: actions/checkout@v2
