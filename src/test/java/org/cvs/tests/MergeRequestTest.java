@@ -1,21 +1,19 @@
 package org.cvs.tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.TmsLink;
-import org.cvs.tests.context.UIBaseTest;
+import io.qameta.allure.*;
+import org.cvs.tests.context.UIBaseLoginContext;
 import org.cvs.utilities.GenerateTestData;
 import org.testng.annotations.Test;
 
 import static org.cvs.core.config.Config.*;
-import static org.cvs.utilities.AllureReportUtility.UI_ALLURE_EPIC;
+import static org.cvs.utilities.AllureUtilities.UI_ALLURE_EPIC;
 
 @Epic(UI_ALLURE_EPIC)
 @Feature("MERGE REQUEST FEATURES")
-public class MergeRequestTest extends UIBaseTest {
+public class MergeRequestTest extends UIBaseLoginContext {
 
     @Test
+    @Severity(SeverityLevel.BLOCKER)
     @Description("Create merge request to master and validate")
     void createMergeRequestTest() {
         String prName = GenerateTestData.gitPRName();
@@ -24,6 +22,7 @@ public class MergeRequestTest extends UIBaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.BLOCKER)
     @Description("Merge PR and validate")
     void mergePRTest() {
         uiSteps.get().mergePoolRequest(AUTOMATED_PR_TITLE);

@@ -15,4 +15,5 @@ public class GithubLoginPage extends GithubBasePage {
     private SelenideElement passwordInput = $(id("password"));
     private SelenideElement signInButton = $(name("commit"));
     private SelenideElement homePageIcon = $("[aria-label^='Homepage']");
+    private SelenideElement avatarIcon = $("[class^='avatar']");
 }

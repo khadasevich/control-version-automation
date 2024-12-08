@@ -4,7 +4,7 @@ import org.openqa.selenium.Cookie;
 
 public interface UISteps {
 
-    Cookie logIn();
+    Cookie successfulLogIn();
 
     void openRepositoryDetails();
 

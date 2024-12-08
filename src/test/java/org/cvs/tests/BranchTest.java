@@ -1,22 +1,20 @@
 package org.cvs.tests;
 
 import com.codeborne.selenide.WebDriverRunner;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import org.cvs.tests.context.UIBaseTest;
+import io.qameta.allure.*;
+import org.cvs.tests.context.UIBaseLoginContext;
 import org.cvs.utilities.GenerateTestData;
 import org.cvs.utilities.PollerUtility;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.cvs.core.config.Config.getUISteps;
-import static org.cvs.utilities.AllureReportUtility.UI_ALLURE_EPIC;
+import static org.cvs.utilities.AllureUtilities.UI_ALLURE_EPIC;
 import static org.hamcrest.Matchers.equalTo;
 
 @Epic(UI_ALLURE_EPIC)
 @Feature("BRANCH FEATURES")
-public class BranchTest extends UIBaseTest {
+public class BranchTest extends UIBaseLoginContext {
 
     private static final String TEST_BRANCH_NAME = GenerateTestData.branchName();
 
@@ -32,6 +30,7 @@ public class BranchTest extends UIBaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.BLOCKER)
     @Description("Create new branch and validate")
     void createBranchTest() {
         uiSteps.get().createBranch(TEST_BRANCH_NAME);

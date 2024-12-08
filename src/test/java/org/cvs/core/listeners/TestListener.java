@@ -1,6 +1,7 @@
 package org.cvs.core.listeners;
 
 import lombok.extern.log4j.Log4j2;
+import org.cvs.utilities.AllureUtilities;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -9,6 +10,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        AllureUtilities.setUpAllure();
         log.info(">>>>>>>> Start of the {} test", result.getName());
     }
 

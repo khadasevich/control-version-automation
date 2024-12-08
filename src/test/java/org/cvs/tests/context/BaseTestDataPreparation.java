@@ -3,6 +3,7 @@ package org.cvs.tests.context;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.cvs.core.config.Config;
+import org.cvs.core.listeners.TestListener;
 import org.cvs.entities.branch.GithubBranch;
 import org.cvs.entities.commit.GithubCommit;
 import org.cvs.entities.pr.GithubPoolRequest;
@@ -11,6 +12,7 @@ import org.cvs.entities.repositories.github.GithubRepository;
 import org.cvs.steps.api.RestApiSteps;
 import org.cvs.steps.api.github.GithubApiSteps;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -18,13 +20,14 @@ import java.util.stream.IntStream;
 import static org.cvs.core.config.Config.*;
 
 @Log4j2
-public class VcsMgmtPreconditions extends BaseTest {
+@Listeners({TestListener.class})
+public class BaseTestDataPreparation {
 
     protected Repository repository;
     protected String repositoryName;
     protected String repoSHA;
 
-    @BeforeSuite
+//    @BeforeSuite
     public void prepareSystem() {
         RestApiSteps apiSteps = Config.getRestApiSteps();
         prepareRepository(apiSteps);

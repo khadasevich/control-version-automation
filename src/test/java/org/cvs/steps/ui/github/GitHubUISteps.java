@@ -31,13 +31,14 @@ public class GitHubUISteps implements UISteps {
 
     @Step
     @Override
-    public Cookie logIn() {
+    public Cookie successfulLogIn() {
         open(LOGIN_PAGE_PATH);
         WebDriverRunner.getWebDriver().manage().window().maximize();
-        githubLoginPage.getUsernameInput().shouldBe(visible).sendKeys("mend-auto");
-        githubLoginPage.getPasswordInput().shouldBe(visible).sendKeys("u6iyuu4itimzm7h");
+        githubLoginPage.getUsernameInput().shouldBe(visible).sendKeys(USERNAME);
+        githubLoginPage.getPasswordInput().shouldBe(visible).sendKeys(PASSWORD);
         githubLoginPage.getSignInButton().shouldBe(enabled).click();
-        githubLoginPage.getHomePageIcon().shouldBe(enabled);
+        githubLoginPage.getHomePageIcon().shouldBe(visible);
+        githubLoginPage.getAvatarIcon().shouldBe(visible);
         return WebDriverRunner.getWebDriver().manage().getCookieNamed("user_session");
     }
 

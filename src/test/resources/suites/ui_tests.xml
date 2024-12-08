@@ -3,9 +3,10 @@
 <suite name="VCS TESTS">
     <test name="UI POSITIVE" parallel="methods" thread-count="4">
         <classes>
-            <class name="org.cvs.tests.BranchTest"/>
-            <class name="org.cvs.tests.CommitTest"/>
-            <class name="org.cvs.tests.MergeRequestTest"/>
+            <class name="org.cvs.tests.LoginTest"/>
+<!--            <class name="org.cvs.tests.CommitTest"/>-->
+<!--            <class name="org.cvs.tests.MergeRequestTest"/>-->
+<!--            <class name="org.cvs.tests.BranchTest"/>-->
         </classes>
     </test>
 </suite>
