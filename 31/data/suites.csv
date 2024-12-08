@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Merge PR and validate","0","mergePRTest","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","skipped","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.MergeRequestTest","UI POSITIVE","org.cvs.tests.ui.MergeRequestTest","mergePRTest"
+"Add commit to the branch and validate","0","addCommitTest","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","skipped","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.CommitTest","UI POSITIVE","org.cvs.tests.ui.CommitTest","addCommitTest"
+"","2","prepareSystem","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","failed","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.LoginTest","UI POSITIVE","org.cvs.tests.ui.LoginTest","prepareSystem"
+"Validate successfull login","1","testLogin","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","skipped","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.LoginTest","UI POSITIVE","org.cvs.tests.ui.LoginTest","testLogin"
+"Create new branch and validate","0","createBranchTest","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","skipped","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.BranchTest","UI POSITIVE","org.cvs.tests.ui.BranchTest","createBranchTest"
+"Create merge request to master and validate","0","createMergeRequestTest","VCS UI TESTS","Sun Dec 08 21:11:19 GMT 2024","skipped","Sun Dec 08 21:11:19 GMT 2024","org.cvs.tests.ui.MergeRequestTest","UI POSITIVE","org.cvs.tests.ui.MergeRequestTest","createMergeRequestTest"
