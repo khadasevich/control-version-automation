@@ -10,10 +10,6 @@ name: Run Selenium Tests and Add Allure Report
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Execute VCS Tests'
-    
 
 jobs:
   build:
