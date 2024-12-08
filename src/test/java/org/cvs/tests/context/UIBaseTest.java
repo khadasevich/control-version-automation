@@ -43,6 +43,7 @@ public class UIBaseTest extends VcsMgmtPreconditions {
         Configuration.timeout = WebTimeouts.IMPLICIT_TIMEOUT;
         Configuration.pageLoadTimeout = WebTimeouts.PAGE_LOAD_TIMEOUT;
         Configuration.baseUrl = WEB_HOST;
+        Configuration.headless = true;
         log.info("Browser configured");
     }
 
