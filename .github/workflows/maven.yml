@@ -6,58 +6,68 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Run Selenium Tests and Add Allure Report
+name: allure-testng-maven
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  autotests:
+    name: Run tests and generate Allure Report
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: 'maven'
+      - uses: actions/checkout@v4
 
-    - uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: 131
-    - run: chrome --version
-    - name: Run Tests
-      env:
-        API_TOKEN: ${{secrets.API_TOKEN}}
-        USERNAME: ${{secrets.TEST_USER}}
-        USERPASS: ${{secrets.TEST_PWD}}
-      run: |
-        mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
+      - uses: actions/cache@v1
+        with:
+          path: |
+            ~/.m2/repository
+          key: ${{ runner.os }}-${{ github.workflow }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ github.workflow }}-
 
-    - name: Get Allure history.
-      uses: actions/checkout@v2
-      if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
 
-    - name: Allure Report action from marketplace.
-      uses: simple-elf/allure-report-action@master
-      if: always()
-      id: allure-report
-      with:
-        allure_results: build/target/allure-results
-        gh_pages: gh-pages
-        allure_history: allure-history
+      - name: Install dependencies
+        run: mvn dependency:go-offline compile compiler:testCompile
 
-    - name: Deploy report to Github Pages.
-      if: always()
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: allure-history
+      - name: Install browser
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 131
+
+      - name: Run Tests
+        env:
+          API_TOKEN: ${{secrets.API_TOKEN}}
+          USERNAME: ${{secrets.TEST_USER}}
+          USERPASS: ${{secrets.TEST_PWD}}
+        run: |
+          mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: target/allure-results
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
