@@ -1,0 +1,29 @@
+<div>PATCH to https://api.github.com/repos/mend-auto/repository_under_test/git/refs/heads/branch_with_commit</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;force&quot;: true,
+    &quot;sha&quot;: &quot;1e74d472895617cadded7cdd8c5b94321a5a5ef3&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: [ BLACKLISTED ]</div>
+            <div>X-GitHub-Api-Version: 2022-11-28</div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/vnd.github+json; charset=ISO-8859-1</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X PATCH &#39;https://api.github.com/repos/mend-auto/repository_under_test/git/refs/heads/branch_with_commit&#39; -H &#39;Authorization: [ BLACKLISTED ]&#39; -H &#39;X-GitHub-Api-Version: 2022-11-28&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/vnd.github+json; charset=ISO-8859-1&#39; -d &#39;{
+    &quot;force&quot;: true,
+    &quot;sha&quot;: &quot;1e74d472895617cadded7cdd8c5b94321a5a5ef3&quot;
+}&#39;
+    </div>
+

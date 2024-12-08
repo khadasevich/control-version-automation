@@ -1,0 +1,8 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"skipped","Sun Dec 08 16:01:11 GMT 2024","Sun Dec 08 16:01:11 GMT 2024","0","VCS TESTS","UI POSITIVE","org.cvs.tests.BranchTest","org.cvs.tests.BranchTest","createBranchTest","createBranchTest","Create new branch and validate"
+"skipped","Sun Dec 08 16:00:43 GMT 2024","Sun Dec 08 16:00:43 GMT 2024","0","VCS TESTS","UI POSITIVE","org.cvs.tests.MergeRequestTest","org.cvs.tests.MergeRequestTest","createMergeRequestTest","createMergeRequestTest","Create merge request to master and validate"
+"broken","Sun Dec 08 16:01:11 GMT 2024","Sun Dec 08 16:01:11 GMT 2024","1","VCS TESTS","UI POSITIVE","org.cvs.tests.BranchTest","org.cvs.tests.BranchTest","loginAndGetCookie","loginAndGetCookie",""
+"broken","Sun Dec 08 16:00:43 GMT 2024","Sun Dec 08 16:00:43 GMT 2024","4","VCS TESTS","UI POSITIVE","org.cvs.tests.CommitTest","org.cvs.tests.CommitTest","loginAndGetCookie","loginAndGetCookie",""
+"broken","Sun Dec 08 16:00:43 GMT 2024","Sun Dec 08 16:00:43 GMT 2024","2","VCS TESTS","UI POSITIVE","org.cvs.tests.MergeRequestTest","org.cvs.tests.MergeRequestTest","loginAndGetCookie","loginAndGetCookie",""
+"skipped","Sun Dec 08 16:00:43 GMT 2024","Sun Dec 08 16:00:43 GMT 2024","0","VCS TESTS","UI POSITIVE","org.cvs.tests.CommitTest","org.cvs.tests.CommitTest","addCommitTest","addCommitTest","Add commit to the branch and validate"
+"skipped","Sun Dec 08 16:00:43 GMT 2024","Sun Dec 08 16:00:43 GMT 2024","0","VCS TESTS","UI POSITIVE","org.cvs.tests.MergeRequestTest","org.cvs.tests.MergeRequestTest","mergePRTest","mergePRTest","Merge PR and validate"

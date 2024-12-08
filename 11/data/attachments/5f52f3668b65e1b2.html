@@ -1,0 +1,35 @@
+<div>POST to https://api.github.com/repos/mend-auto/repository_under_test/git/commits</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;message&quot;: &quot;Commit message&quot;,
+    &quot;tree&quot;: &quot;1c219cce3f492b50a9aa846824ace7d2578c59bb&quot;,
+    &quot;parents&quot;: [
+        &quot;7d48ef0a0da2f5d2ed2ff4c2dc794a6572d2d723&quot;
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: [ BLACKLISTED ]</div>
+            <div>X-GitHub-Api-Version: 2022-11-28</div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/vnd.github+json; charset=ISO-8859-1</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://api.github.com/repos/mend-auto/repository_under_test/git/commits&#39; -H &#39;Authorization: [ BLACKLISTED ]&#39; -H &#39;X-GitHub-Api-Version: 2022-11-28&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/vnd.github+json; charset=ISO-8859-1&#39; -d &#39;{
+    &quot;message&quot;: &quot;Commit message&quot;,
+    &quot;tree&quot;: &quot;1c219cce3f492b50a9aa846824ace7d2578c59bb&quot;,
+    &quot;parents&quot;: [
+        &quot;7d48ef0a0da2f5d2ed2ff4c2dc794a6572d2d723&quot;
+    ]
+}&#39;
+    </div>
+
