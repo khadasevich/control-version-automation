@@ -1,8 +1,8 @@
-package org.cvs.tests;
+package org.cvs.tests.ui;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.*;
-import org.cvs.tests.context.UIBaseLoginContext;
+import org.cvs.tests.ui.context.UIBaseLoginContext;
 import org.cvs.utilities.GenerateTestData;
 import org.cvs.utilities.PollerUtility;
 import org.testng.annotations.BeforeMethod;

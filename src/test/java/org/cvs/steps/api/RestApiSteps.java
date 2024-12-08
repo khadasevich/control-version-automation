@@ -20,7 +20,13 @@ public interface RestApiSteps {
 
     void deleteRepo();
 
+    void deleteRepo(String repoName);
+
     void createBranch(Branch branch);
+
+    <T extends Branch> List<T> getListOfBranches();
+
+    void deleteBranch(String branchName);
 
     String addCommit(Commit commit);
 

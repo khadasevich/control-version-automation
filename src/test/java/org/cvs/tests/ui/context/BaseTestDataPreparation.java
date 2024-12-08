@@ -1,4 +1,4 @@
-package org.cvs.tests.context;
+package org.cvs.tests.ui.context;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -27,7 +27,7 @@ public class BaseTestDataPreparation {
     protected String repositoryName;
     protected String repoSHA;
 
-//    @BeforeSuite
+    @BeforeSuite
     public void prepareSystem() {
         RestApiSteps apiSteps = Config.getRestApiSteps();
         prepareRepository(apiSteps);

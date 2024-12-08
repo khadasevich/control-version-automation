@@ -1,4 +1,4 @@
-package org.cvs.tests.context;
+package org.cvs.tests.ui.context;
 
 import lombok.extern.log4j.Log4j2;
 import org.cvs.steps.ui.UISteps;

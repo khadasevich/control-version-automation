@@ -1,7 +1,7 @@
-package org.cvs.tests;
+package org.cvs.tests.ui;
 
 import io.qameta.allure.*;
-import org.cvs.tests.context.UIBaseLoginContext;
+import org.cvs.tests.ui.context.UIBaseLoginContext;
 import org.cvs.utilities.GenerateTestData;
 import org.testng.annotations.Test;
 

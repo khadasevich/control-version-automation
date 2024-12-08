@@ -1,4 +1,4 @@
-package org.cvs.tests.context;
+package org.cvs.tests.ui.context;
 
 import java.time.Duration;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.1.dtd">
+<suite name="VCS REST API TESTS">
+    <test name="REST API POSITIVE" parallel="methods" thread-count="4">
+        <classes>
+            <class name="org.cvs.tests.api.RepositoriesApiTest"/>
+            <class name="org.cvs.tests.api.BranchesApiTest"/>
+        </classes>
+    </test>
+</suite>

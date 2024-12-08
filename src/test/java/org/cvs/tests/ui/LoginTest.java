@@ -1,7 +1,7 @@
-package org.cvs.tests;
+package org.cvs.tests.ui;
 
 import io.qameta.allure.*;
-import org.cvs.tests.context.UIBaseTest;
+import org.cvs.tests.ui.context.UIBaseTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

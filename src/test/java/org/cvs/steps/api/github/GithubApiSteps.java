@@ -53,9 +53,28 @@ public class GithubApiSteps implements RestApiSteps {
                 .statusCode(201).extract().jsonPath().getObject("", GithubRepository.class);
     }
 
+    @Step
+    @Override
+    public List<GithubBranch> getListOfBranches() {
+        String basePath = String.format("/repos/%s/%s/branches", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification().setBasePath(basePath).build();
+        return HTTPRequestSteps.get(requestSpecification)
+                .statusCode(200).extract().jsonPath().getList("", GithubBranch.class);
+    }
+
+    @Step
     @Override
     public void deleteRepo() {
         String basePath = String.format("/repos/%s/%s", USERNAME, DEFAULT_REPOSITORY_NAME);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).build();
+        HTTPRequestSteps.delete(requestSpecification).statusCode(204);
+    }
+
+    @Step
+    @Override
+    public void deleteRepo(String repoName) {
+        String basePath = String.format("/repos/%s/%s", USERNAME, repoName);
         RequestSpecification requestSpecification = getBaseRequestSpecification()
                 .setBasePath(basePath).build();
         HTTPRequestSteps.delete(requestSpecification).statusCode(204);
@@ -89,6 +108,16 @@ public class GithubApiSteps implements RestApiSteps {
         RequestSpecification requestSpecification = getBaseRequestSpecification()
                 .setBasePath(basePath).setBody(body).build();
         HTTPRequestSteps.post(requestSpecification).statusCode(201);
+    }
+
+    @Step
+    @Override
+    public void deleteBranch(String branchName) {
+        String basePath = String.format("/repos/%s/%s/git/refs/heads/%s", USERNAME, DEFAULT_REPOSITORY_NAME, branchName);
+        RequestSpecification requestSpecification = getBaseRequestSpecification()
+                .setBasePath(basePath).build();
+        HTTPRequestSteps.delete(requestSpecification).statusCode(204);
+
     }
 
     @Step

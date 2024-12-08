@@ -25,4 +25,12 @@ public class GenerateTestData {
     public static String gitPRName() {
         return FAKER.numerify("pr###");
     }
+
+    public static String gitRepositoryName() {
+        return FAKER.numerify("repository###");
+    }
+
+    public static String gitBranchName() {
+        return FAKER.numerify("branch###");
+    }
 }

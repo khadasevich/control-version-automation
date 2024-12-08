@@ -47,7 +47,7 @@ jobs:
           USERNAME: ${{secrets.TEST_USER}}
           USERPASS: ${{secrets.TEST_PWD}}
         run: |
-          mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS
+          mvn clean test -Dselenide.headless=true -Dvcs.token=$API_TOKEN -Dvcs.username=$USERNAME -Dvcs.userpwd=$USERPASS -DsuiteXmlFile=api_tests.xml
 
       - name: Get Allure history
         uses: actions/checkout@v4

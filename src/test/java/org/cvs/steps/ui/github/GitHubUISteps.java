@@ -18,7 +18,7 @@ import static org.cvs.core.config.Config.*;
 import static org.cvs.pages.github.GithubBranchesPage.BRANCHES_PAGE_PATH;
 import static org.cvs.pages.github.GithubLoginPage.LOGIN_PAGE_PATH;
 import static org.cvs.pages.github.GithubPullRequestsPage.PR_PAGE_PATH;
-import static org.cvs.tests.context.WebTimeouts.EXPLICIT_TIMEOUT;
+import static org.cvs.tests.ui.context.WebTimeouts.EXPLICIT_TIMEOUT;
 import static org.hamcrest.Matchers.equalTo;
 
 @Log4j2
