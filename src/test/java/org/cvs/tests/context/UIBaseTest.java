@@ -2,14 +2,13 @@ package org.cvs.tests.context;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.cvs.steps.ui.UISteps;
 import org.cvs.utilities.AllureReportUtility;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.Cookie;
 
@@ -21,15 +20,13 @@ import static org.cvs.core.config.Config.getUISteps;
 @Log4j2
 public class UIBaseTest extends VcsMgmtPreconditions {
 
-    private Cookie userSession;
-    protected UISteps uiSteps;
+    protected static Cookie userSession;
+    protected static final ThreadLocal<UISteps> uiSteps = new ThreadLocal<>();
 
     @BeforeSuite
     public void uiTestsSetUp() {
         setUpAllure();
         setUpBrowser();
-        uiSteps = getUISteps();
-        userSession = uiSteps.logIn();
     }
 
     private void setUpAllure() {
@@ -51,19 +48,16 @@ public class UIBaseTest extends VcsMgmtPreconditions {
     }
 
 
-    @BeforeMethod
-    public void openRepositoryDetails() {
-        if (userSession == null) {
-            userSession = uiSteps.logIn();
-        } else {
-            WebDriverRunner.getWebDriver().manage().addCookie(userSession);
-            uiSteps.openRepositoryDetails();
-        }
+    @BeforeClass
+    public void loginAndGetCookie() {
+        uiSteps.set(getUISteps());
+        userSession = uiSteps.get().logIn();
+        uiSteps.get().openRepositoryDetails();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         AllureReportUtility.attachScreenshot();
-        Selenide.closeWindow();
+        Selenide.closeWebDriver();
     }
 }

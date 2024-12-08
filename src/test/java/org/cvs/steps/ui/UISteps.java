@@ -12,7 +12,9 @@ public interface UISteps {
 
     void validateBranchCreation(String branchName);
 
-    void addCommit();
+    void addCommit(String branchName, String fileName);
+
+    void validateCommitCreation(String branchName, String fileName);
 
     void createMergeRequest();
 
