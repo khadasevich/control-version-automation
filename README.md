@@ -1,6 +1,6 @@
 # VCS testing tool
 ## Main Technologies
-### Java
+### Java 17
 ### TestNg framework
 ### Selenide/Selenium
 ### REST-assured
