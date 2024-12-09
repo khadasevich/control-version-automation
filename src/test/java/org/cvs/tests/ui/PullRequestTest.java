@@ -9,13 +9,13 @@ import static org.cvs.core.config.Config.*;
 import static org.cvs.utilities.AllureUtilities.UI_ALLURE_EPIC;
 
 @Epic(UI_ALLURE_EPIC)
-@Feature("MERGE REQUEST FEATURES")
-public class MergeRequestTest extends UIBaseLoginContext {
+@Feature("PULL REQUEST FEATURES")
+public class PullRequestTest extends UIBaseLoginContext {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Create merge request to master and validate")
-    void createMergeRequestTest() {
+    @Description("Create pull request to master and validate")
+    void createPullRequestTest() {
         String prName = GenerateTestData.gitPRName();
         uiSteps.get().createPoolRequest(BRANCH_WITH_COMMIT_NAME, prName);
         uiSteps.get().validatePoolRequestCreation(prName);

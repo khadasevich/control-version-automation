@@ -5,7 +5,7 @@
         <classes>
             <class name="org.cvs.tests.ui.LoginTest"/>
             <class name="org.cvs.tests.ui.CommitTest"/>
-            <class name="org.cvs.tests.ui.MergeRequestTest"/>
+            <class name="org.cvs.tests.ui.PullRequestTest"/>
             <class name="org.cvs.tests.ui.BranchTest"/>
         </classes>
     </test>

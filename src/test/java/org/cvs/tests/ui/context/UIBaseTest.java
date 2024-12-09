@@ -6,9 +6,6 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.cvs.utilities.AllureUtilities;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
@@ -25,11 +22,6 @@ public class UIBaseTest extends BaseTestDataPreparation {
         Configuration.pageLoadTimeout = WebTimeouts.PAGE_LOAD_TIMEOUT;
         Configuration.baseUrl = WEB_HOST;
         Configuration.headless = true;
-        ChromeOptions options = new ChromeOptions();
-        LoggingPreferences logPrefs = new LoggingPreferences();
-        logPrefs.enable(LogType.BROWSER, Level.ALL);
-        options.setCapability("goog:loggingPrefs", logPrefs);
-        Configuration.browserCapabilities = options;
         log.info("Browser configured");
     }
 
